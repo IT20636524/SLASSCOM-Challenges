@@ -10,7 +10,7 @@ public class QueueX {
         queueArray = new char[maxSize];
         front = 0;
         rear = -1;
-        nItems=0; //no items
+        nItems=0; //no of items
     }
 
     public int getnItems() {

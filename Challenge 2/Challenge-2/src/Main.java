@@ -24,13 +24,13 @@ public class Main {
             }
         }
 
-        //for reverse the pattern in queue 2
-        while(!queue2.isEmpty()){
-            stack.push(queue2.remove());
-        }
-        while(!stack.isEmpty()){
-            queue2.insert(stack.pop());
-        }
+        //for reverse the pattern in queue 2-{[()]} like patterns
+//        while(!queue2.isEmpty()){
+//            stack.push(queue2.remove());
+//        }
+//        while(!stack.isEmpty()){
+//            queue2.insert(stack.pop());
+//        }
 
         //check whether number of opening brackets and closing brackets are same
         if(queue1.getnItems()==queue2.getnItems()){
