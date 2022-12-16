@@ -14,6 +14,7 @@ public class Main {
         input = sc.nextLine();
         inputArray = input.toCharArray();
 
+        //add opening and closing brackets to separate queues
         for(int i=0; i < inputArray.length; i++){
             if(inputArray[i]=='{' || inputArray[i]=='[' || inputArray[i]=='('){
                 queue1.insert(inputArray[i]);
@@ -31,7 +32,9 @@ public class Main {
             queue2.insert(stack.pop());
         }
 
+        //check whether number of opening brackets and closing brackets are same
         if(queue1.getnItems()==queue2.getnItems()){
+            //check whether all opening bracket has a closing bracket
             for(int j=0; j < queue1.getnItems(); j++){
                 if(queue1.remove()=='{' && queue2.remove()=='}'){
                     output=true;
