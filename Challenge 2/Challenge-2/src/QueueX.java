@@ -13,6 +13,10 @@ public class QueueX {
         nItems=0; //no items
     }
 
+    public int getnItems() {
+        return nItems;
+    }
+
     public void insert(char j) {
         //check whether queue is full
         if(rear == maxSize-1) {
@@ -40,6 +44,14 @@ public class QueueX {
         }else{
             return queueArray[front];
         }
+    }
+
+    public boolean isEmpty(){
+        return(nItems==0);
+    }
+
+    public boolean isFull(){
+        return(rear==maxSize-1);
     }
 
 }
