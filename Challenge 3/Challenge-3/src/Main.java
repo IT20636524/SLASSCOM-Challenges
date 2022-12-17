@@ -37,7 +37,24 @@ public class Main {
         System.out.println("Highest value is: "+arr[arr.length-1]);
 
         //mode
-
+        int mode= arr[0];
+        int count=1;
+        int modeCount=1;
+        for(int i=1; i<arr.length; i++){
+            if(arr[i] == arr[i-1]){
+                count++;
+            }else{
+                if(count > modeCount){
+                    modeCount = count;
+                    mode=arr[i-1];
+                }
+                count = 1;
+            }
+        }
+        if(count > modeCount){
+            mode = arr[arr.length - 1];
+        }
+        System.out.println("Mode is : "+mode);
 
         //prime numbers
         List<Integer> primes = new ArrayList<>();
