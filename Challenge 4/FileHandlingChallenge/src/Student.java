@@ -14,4 +14,9 @@ class Student {
     public String getFirstName() { return firstName; }
     public String getLastName() { return lastName; }
     public String getCourse() { return course; }
+
+    public double getFinalAverage() {
+        // Compute and return the student's final average based on stored grades
+        return 0.0;
+    }
 }

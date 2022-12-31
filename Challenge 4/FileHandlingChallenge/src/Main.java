@@ -1,23 +1,70 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-        try{
-            File file = new File("marks.txt");
-            Scanner scanner = new Scanner(file);
-            while(scanner.hasNextLine()){
-                String data = scanner.nextLine();
-                System.out.println(data);
-            }
+        // Read student information from input file
+        List<Student> students = readStudentsFromFile("input.txt");
 
-        }catch(FileNotFoundException e){
-            System.out.println("Error occured");
-            e.printStackTrace();
+        // Compute final grades for all students
+        for (Student student : students) {
+            student.getFinalAverage();
         }
 
+        // Print summary report to output file
+        printSummaryReport(students, "output.txt");
     }
+
+    private static List<Student> readStudentsFromFile(String fileName) {
+        List<Student> students = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            int numStudents = Integer.parseInt(reader.readLine());
+            for (int i = 0; i < numStudents; i++) {
+                String[] name = reader.readLine().split(", ");
+                String firstName = name[1];
+                String lastName = name[0];
+                String[] line = reader.readLine().split(" ");
+                String course = line[0];
+                if (course.equals("English")) {
+                    int termPaper = Integer.parseInt(line[1]);
+                    int midterm = Integer.parseInt(line[2]);
+                    int finalExam = Integer.parseInt(line[3]);
+                    students.add(new EnglishStudent(firstName, lastName, termPaper, midterm, finalExam));
+                } else if (course.equals("Science")) {
+                    int attendance = Integer.parseInt(line[1]);
+                    int project = Integer.parseInt(line[2]);
+                    int midterm = Integer.parseInt(line[3]);
+                    int finalExam = Integer.parseInt(line[4]);
+                    students.add(new ScienceStudent(firstName, lastName, attendance, project, midterm, finalExam));
+                } else if (course.equals("Math")) {
+//                    int quiz1 = Integer.parseInt(line[1]);
+//                    int quiz2 = Integer.parseInt(line[2]);
+//                    int quiz3 = Integer.parseInt(line[3]);
+//                    int quiz4 = Integer.parseInt(line[4]);
+//                    int quiz5 = Integer.parseInt(line[5]);
+                    int[] quizzes =new int[5];
+                    for(int j=0; j<5; j++){
+                        quizzes[j] = Integer.parseInt(line[j+1]);
+                    }
+                    int test1 = Integer.parseInt(line[6]);
+                    int test2 = Integer.parseInt(line[7]);
+                    int finalExam = Integer.parseInt(line[8]);
+                    students.add(new MathStudent(firstName, lastName, quizzes, test1, test2, finalExam));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
+
+    private static void printSummaryReport(List<Student> s, String filename){
+        
+    }
+
+}
