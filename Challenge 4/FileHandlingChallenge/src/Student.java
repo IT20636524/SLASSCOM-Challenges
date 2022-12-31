@@ -19,4 +19,23 @@ class Student {
         // Compute and return the student's final average based on stored grades
         return 0.0;
     }
+
+    public char getLetterGrade(double finalAverage) {
+        if (finalAverage >= 90) {
+            return 'A';
+        } else if (finalAverage >= 80) {
+            return 'B';
+        } else if (finalAverage >= 70) {
+            return 'C';
+        } else if (finalAverage >= 60) {
+            return 'D';
+        } else {
+            return 'F';
+        }
+    }
+
+    public int getFinalExamGrade() {
+        return 0;
+    }
+
 }

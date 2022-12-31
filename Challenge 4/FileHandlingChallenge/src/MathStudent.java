@@ -12,6 +12,7 @@ class MathStudent extends Student {
         this.finalExam = finalExam;
     }
 
+    @Override
     public double getFinalAverage() {
         double quizAverage = 0;
         for (int quiz : quizzes) {
@@ -20,5 +21,15 @@ class MathStudent extends Student {
         quizAverage /= quizzes.length;
 
         return (quizAverage * 0.15 + test1 * 0.3 + test2 * 0.2 + finalExam * 0.35) / 3;
+    }
+
+    @Override
+    public int getFinalExamGrade() {
+        double sum=0.0;
+        for(int i=0; i<5; i++){
+            sum+=quizzes[i];
+        }
+        double quizAverage = sum / 5.0;
+        return (int) ((0.15 * quizAverage) + (0.3 * test1) + (0.2 * test2) + (0.35 * finalExam));
     }
 }

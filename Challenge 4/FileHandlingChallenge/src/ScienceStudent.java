@@ -12,7 +12,13 @@ class ScienceStudent extends Student {
         this.finalExam = finalExam;
     }
 
+    @Override
     public double getFinalAverage() {
         return (attendance * 0.1 + project * 0.3 + midterm * 0.3 + finalExam * 0.3) / 4;
+    }
+
+    @Override
+    public int getFinalExamGrade() {
+        return (int) ((0.1 * attendance) + (0.3 * project) + (0.3 * midterm) + (0.3 * finalExam));
     }
 }

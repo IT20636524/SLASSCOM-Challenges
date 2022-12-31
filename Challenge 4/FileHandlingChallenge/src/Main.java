@@ -63,8 +63,22 @@ public class Main {
         return students;
     }
 
-    private static void printSummaryReport(List<Student> s, String filename){
-        
+    private static void printSummaryReport(List<Student> students, String filename){
+        try {
+            FileWriter writer = new FileWriter(filename);
+            for (Student student : students) {
+                writer.write(student.getFirstName() + " " + student.getLastName() + ",");
+                writer.write(student.getFinalExamGrade() + ",");
+                writer.write(student.getFinalAverage() + ",");
+                writer.write(student.getLetterGrade(student.getFinalAverage()) + "\n");
+            }
+
+            writer.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
 }
